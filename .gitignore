@@ -1,0 +1,5 @@
+/venv/
+/.idea/
+/generic_tasks.egg-info/
+/build/
+/dist/
