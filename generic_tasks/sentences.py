@@ -1,6 +1,18 @@
 import re
 import nltk.data
 
+def crop_bullet(text: str) -> (str, str):
+    """
+    Crop and remember leading bullet using regex
+    """
+    bullet_pattern = r"^[ \t]*[\*-][ \t]+"  # Leading bullet
+
+    bullet = ""
+    if re.search(bullet_pattern, text):
+        bullet = re.search(bullet_pattern, text).group(0)
+        text = re.sub(bullet_pattern, "", text)
+
+    return bullet, text
 
 def split_sentences(text: str, language: str='en'):
     """
@@ -18,7 +30,11 @@ def split_sentences(text: str, language: str='en'):
         raise ValueError(f'Language {language} not supported.')
 
     tokenizer = nltk.data.load(pickle)
-    sentences = tokenizer.tokenize(text.strip())
-    sentences = [re.sub(r'\s+', ' ', sentence) for sentence in sentences]
+    bullet, text = crop_bullet(text)
+    sentences = tokenizer.tokenize(text)
+
+    # Prepend the first sentence with the bullet if sentences are not empty
+    if sentences:
+        sentences[0] = bullet + sentences[0]
 
     return sentences

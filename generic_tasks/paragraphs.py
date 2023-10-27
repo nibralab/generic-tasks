@@ -7,7 +7,4 @@ def split_paragraphs(text: str):
     :param text: The text to be split
     :return: List of paragraphs
     """
-    paragraphs = re.split(r'\n\n+', text)
-    paragraphs = [paragraph.strip() for paragraph in paragraphs]
-
-    return paragraphs
+    return re.split(r'\n\n+', text)
