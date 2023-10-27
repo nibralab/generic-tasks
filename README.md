@@ -16,3 +16,36 @@ The package provides the following functions:
 All functions use the first CUDA GPU, if available.
 
 For usage examples, see the [tests](tests) directory.
+
+## Installation
+
+The following command syntax can be used to install the default branch of the project: 
+
+```bash
+$ pip install git+https://github.com/nibralab/generic-tasks.git
+```
+
+To install a specific version, enter:
+
+```bash
+$ pip install git+https://github.com/nibralab/generic-tasks.git@<tag>
+```
+
+where `<tag>` is the tag name of the version to install.
+
+If you want to include the project in a requirements file, use the following syntax:
+
+```text
+generic-tasks==<tag>
+-e https://github.com/nibralab/generic-tasks.git@<tag>#egg=generic_tasks
+```
+
+The package will then be installed with
+
+```bash
+$ pip install -r requirements.txt
+```
+
+## License
+
+This project is licensed under the terms of the [MIT License](LICENSE).
