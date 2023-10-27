@@ -5,10 +5,13 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
 from generic_tasks import sentiment_analysis
 
+import importlib
+importlib.reload(sys.modules['generic_tasks'])
+
 texts = [
-    "I am very happy with the product.",
-    "I am not happy with the product.",
-    "The product works as expected.",
+    "I am very happy with your product.",
+    "I am not happy with your product.",
+    "Your product works as expected.",
 ]
 
 for text in texts:

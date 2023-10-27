@@ -2,7 +2,7 @@ import torch
 from transformers import pipeline
 
 
-def sentiment_analysis(utterance: str):
+def sentiment_analysis(utterance: str) -> (str, float):
     """
     Generic Sentiment Analysis
 
@@ -10,17 +10,19 @@ def sentiment_analysis(utterance: str):
     :return: The sentiment (str) and the confidence level (float)
     """
 
-    model = "distilbert-base-uncased-finetuned-sst-2-english"
+    model = "SamLowe/roberta-base-go_emotions"
 
     classifier = pipeline(
-        "sentiment-analysis",
+        "text-classification",
         model=model,
-        device = torch.device("cuda:0") if torch.cuda.is_available() else torch.device("cpu")
+        device = torch.device("cuda:0") if torch.cuda.is_available() else torch.device("cpu"),
+        top_k = None
     )
 
-    prediction = classifier(utterance)
+    # Produces a list of dicts for each of the labels
+    emotions = classifier([utterance])[0]
 
-    sentiment = prediction[0]['label']
-    score = prediction[0]['score']
+    # Find the most likely label from the emotions dict
+    prediction = max(emotions, key=lambda x: x['score'])
 
-    return sentiment, score
+    return prediction['label'], prediction['score']
