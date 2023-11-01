@@ -9,5 +9,4 @@ text = "In this course, we will teach you how to"
 
 completed_text = complete(text, max_length=500)
 
-print(f"Original text: {text}")
-print(f"Completed text: {completed_text}")
+print(f"{text} {completed_text}")
