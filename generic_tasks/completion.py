@@ -1,3 +1,4 @@
+import requests
 from langchain.llms import Ollama
 
 def complete(text: str, max_length: int = 50, num_return_sequences: int = 1):
@@ -14,16 +15,19 @@ def complete(text: str, max_length: int = 50, num_return_sequences: int = 1):
     ollama_url = "http://localhost:11434/api/generate"
     model = "llama2-uncensored"
 
-    llm = Ollama(
-        base_url=ollama_url,
-        model=model,
-    )
+    request = {
+        "model": model,
+        "prompt": text,
+        "stream": False,
+    }
 
-    # Get the answer from the chain
-    answer = llm(
-        text,
-        max_length=max_length,
-        num_return_sequences=num_return_sequences
-    )
+    # Send the request to the Ollama URL
+    response = requests.post(ollama_url, json=request)
+
+    # Get the response as JSON
+    response = response.json()
+
+    # Get the answer from the response
+    answer = response["response"]
 
     return answer
