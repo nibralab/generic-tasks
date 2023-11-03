@@ -1,23 +1,19 @@
 import requests
-from langchain.llms import Ollama
 
-def complete(text: str, max_length: int = 50, num_return_sequences: int = 1):
+def complete(text: str, **kwargs):
     """
     Generic Text Completion
 
     :param text: The text to be completed
-    :param max_length:
-    :param num_return_sequences:
     :return: The completed text
     """
 
-    print(f"Complete: {text}")
-    ollama_url = "http://localhost:11434/api/generate"
-    model = "llama2-uncensored"
+    model = kwargs.get("model", "open-orca-platypus2")
 
+    ollama_url = "http://localhost:11434/api/generate"
     request = {
         "model": model,
-        "prompt": text,
+        "prompt": f"Complete the following test:\n\nText: {text}",
         "stream": False,
     }
 
@@ -31,3 +27,44 @@ def complete(text: str, max_length: int = 50, num_return_sequences: int = 1):
     answer = response["response"]
 
     return answer
+
+if __name__ == "__main__":
+    models = [
+        "mistral",
+        "llama2",
+        "codellama",
+        "vicuna",
+        "orca-mini",
+        "llama2-uncensored",
+        "wizard-vicuna-uncensored",
+        "nous-hermes", # education 56.2%, politics 100.0%, education 56.2% ✘
+        "phind-codellama",
+        "mistral-openorca",
+        "wizardcoder",
+        "wizard-math",
+        "llama2-chinese",
+        "stable-beluga",
+        "codeup",
+        "everythinglm",
+        "medllama2",
+        "wizardlm-uncensored",
+        "zephyr",
+        "falcon",
+        "wizard-vicuna",
+        "open-orca-platypus2", # education 95.2%, politics 100.0%, business 85.7% ✔
+        "starcoder",
+        "samantha-mistral",
+        "wizardlm",
+        "sqlcoder",
+        "dolphin2.1-mistral",
+        "nexusraven",
+        "openhermes2-mistral",
+        "dolphin2.2-mistral",
+        "codebooga",
+    ]
+
+    text = "In this course, we will teach you how to"
+
+    for model in models:
+        completed_text = complete(text, model=model)
+        print(f"{model}: {text} {completed_text}")
