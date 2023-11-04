@@ -14,7 +14,7 @@ The package provides the following functions:
 
 """
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __author__ = 'Niels Braczek, AI-Schmiede'
 
 from .paragraphs import split_paragraphs
@@ -26,3 +26,4 @@ from .question_answer import answer
 from .sentiment import sentiment_analysis
 from .summarization import summarize
 from .translation import translate
+from .embedder import OllamaEmbedder

@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='generic_tasks',
-    version='0.1.0',
+    version='0.1.1',
     description='A set of generic tasks for AI prototypes',
     url='https://github.com/nibralab/generic_tasks',
     author='Niels Braczek',
