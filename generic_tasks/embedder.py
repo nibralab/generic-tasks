@@ -1,7 +1,9 @@
 import json
 import requests
+from langchain.embeddings.base import Embeddings
 
-class OllamaEmbedder:
+
+class OllamaEmbedder(Embeddings):
     def __init__(self, **kwargs):
         self.model = kwargs.get("model", "open-orca-platypus2")
         self.ollama_url = "http://localhost:11434/api/embeddings"
