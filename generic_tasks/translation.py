@@ -125,28 +125,11 @@ Best regards, [Your Name]
     """
 
     text_de = """
-Sehr geehrter [Kundenname],
-
-ich verstehe Ihre Frustration über die Probleme, die Sie in Ihrem Zuhause
-erleben. Wasserschäden und eine Haustür, die nicht richtig schließt, können sehr
-störend und stressig sein. Ich möchte Ihnen versichern, dass wir diese Bedenken
-ernst nehmen und alles tun werden, um sie zu lösen.
-
-Können Sie bitte weitere Details zu den Wasserschäden angeben? Liegt es an einem
-kürzlichen Ereignis oder ist es ein anhaltendes Problem? Und was ist die
-Ursache des Problems mit der Haustür? Ist sie schwierig zu öffnen oder zu
-schließen, oder ist sie nicht richtig ausgerichtet? Wenn wir die Details kennen,
-können wir die Situation besser verstehen und die beste Lösung finden.
-
-Sobald wir mehr Informationen haben, können wir gemeinsam eine Lösung finden.
-Wir müssen möglicherweise jemanden schicken, um das Problem persönlich zu
-untersuchen, aber wir werden unser Bestes tun, um Ihre Bedenken so schnell und
-effizient wie möglich zu beheben.
-
-Vielen Dank, dass Sie uns darauf aufmerksam gemacht haben, und lassen Sie es
-mich bitte wissen, wenn ich Ihnen noch weiterhelfen kann.
-
-Mit freundlichen Grüßen, [Ihr Name]
+* Es muss je ein Zeichen aus folgenden Kategorien enthalten: <br>
+    * Kleinbuchstaben (a-z)<br>
+    * Großbuchstaben (A-Z)<br>
+    * Zahlen (0-9)<br>
+    * Sonderzeichen `(+-=.,:;_!?$#%&~^*|/()@{}[]<>)`<br>
     """
 
     for model in models:
