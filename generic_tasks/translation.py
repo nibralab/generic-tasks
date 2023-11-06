@@ -44,7 +44,9 @@ def translate(text, from_language=None, to_language=None, **kwargs):
     ollama_url = "http://localhost:11434/api/generate"
     request = {
         "model": model,
-        "system": "You are a translator en-de and vice versa. DO NOT ADD OR REMOVE INFORMATION. If you encounter character sequences that are not translatable, fx. #%&~^*|/(), simply copy them.",
+        "system": "You are a translator en-de and vice versa. "
+                  "DO NOT ADD OR REMOVE INFORMATION. DO NOT ADD COMMENTS. "
+                  "If text cannot be translated due to the presence of special characters that are not translatable, simply copy the special characters.",
         "prompt": prompt,
         "options": {
             "temperature": 0.0,
