@@ -15,6 +15,10 @@ def translate(text, from_language=None, to_language=None, **kwargs):
     :param **kwargs:
     :return: The translated text
     """
+    known_languages = {
+        "en": "English",
+        "de": "German",
+    }
     if from_language is None:
         from_language = "en"
 
@@ -24,7 +28,14 @@ def translate(text, from_language=None, to_language=None, **kwargs):
     if from_language == to_language:
         return text
 
-    if to_language == "de":
+    # Map language codes to language names
+    if from_language in known_languages:
+        from_language = known_languages[from_language]
+
+    if to_language in known_languages:
+        to_language = known_languages[to_language]
+
+    if to_language == "German":
         to_language = "formal German"
 
     model = kwargs.get("model", "open-orca-platypus2")
@@ -33,6 +44,7 @@ def translate(text, from_language=None, to_language=None, **kwargs):
     ollama_url = "http://localhost:11434/api/generate"
     request = {
         "model": model,
+        "system": "You are a translator en-de and vice versa. You never add or remove information. If you encounter character sequences that you do not understand, you can simply copy them.",
         "prompt": prompt,
         "options": {
             "temperature": 0.0,
