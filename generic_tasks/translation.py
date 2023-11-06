@@ -24,17 +24,18 @@ def translate(text, from_language=None, to_language=None, **kwargs):
     if from_language == to_language:
         return text
 
-    model = kwargs.get("model", "open-orca-platypus2")
-    prompt = f"Translate the following text from {from_language} to {to_language}:\n\nText: {text}"
     if to_language == "de":
-        prompt += "\n\nUse formal language."
+        to_language = "formal German"
+
+    model = kwargs.get("model", "open-orca-platypus2")
+    prompt = f"Translate the following text from {from_language} to {to_language}:\n{text}"
 
     ollama_url = "http://localhost:11434/api/generate"
     request = {
         "model": model,
         "prompt": prompt,
         "options": {
-            "temperature": 0.3,
+            "temperature": 0.0,
         },
         "stream": False,
     }
