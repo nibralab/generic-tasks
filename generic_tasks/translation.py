@@ -40,7 +40,7 @@ def translate(text, from_language=None, to_language=None, **kwargs):
 
     model = kwargs.get("model", "open-orca-platypus2")
     prompt = f"Translate the following text from {from_language} to {to_language}:\n{text}"
-    prompt = f"Translate the following {from_language} text to {to_language} without adding any comments or notes:\n\n\"{text}\"\n\n"
+    prompt = f"Translate the following {from_language} text to {to_language} without adding any comments or notes:\n\n{text}\n\n"
 
     ollama_url = "http://localhost:11434/api/generate"
     request = {
