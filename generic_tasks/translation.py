@@ -40,13 +40,13 @@ def translate(text, from_language=None, to_language=None, **kwargs):
 
     model = kwargs.get("model", "open-orca-platypus2")
     prompt = f"Translate the following text from {from_language} to {to_language}:\n{text}"
+    prompt = f"Translate the following {from_language} text to {to_language} without adding any comments or notes:\n\n\"{text}\"\n\n"
 
     ollama_url = "http://localhost:11434/api/generate"
     request = {
         "model": model,
-        "system": "You are a translator en-de and vice versa. "
-                  "DO NOT ADD OR REMOVE INFORMATION. DO NOT ADD COMMENTS. "
-                  "If text cannot be translated due to the presence of special characters that are not translatable, simply copy the special characters.",
+        "system": "You are a helpful translation agent. "
+                  "If text cannot be translated due to the presence of special characters that are not translatable, simply copy the special characters as-is.",
         "prompt": prompt,
         "options": {
             "temperature": 0.0,
@@ -72,23 +72,23 @@ if __name__ == "__main__":
         # "codellama",
         # "vicuna", # 71.57s, quite bumpy, but otherwise good translation
         # "orca-mini", # 72.75s, somewhat bumpy, but otherwise good translation
-        "llama2-uncensored", # 71.33s, better, but still not perfect
+        # "llama2-uncensored", # 71.33s, better, but still not perfect
         # "wizard-vicuna-uncensored", # 71.80s, just like vicuna
         # "nous-hermes", # 69.59s, quite bumpy translation, informal language
         # "phind-codellama",
-        "mistral-openorca", # 73.31s, just small failures
+        # "mistral-openorca", # 73.31s, just small failures
         # "wizardcoder",
-        "wizard-math", # s71.02s, quite good translation
+        # "wizard-math", # s71.02s, quite good translation
         # "llama2-chinese", # 74.32s, quite bumpy translation
         # "stable-beluga", # 70.31, just like vicuna
         # "codeup",
-        "everythinglm", # 71.68s, good translation, mix of formal and informal language
+        # "everythinglm", # 71.68s, good translation, mix of formal and informal language
         # "medllama2",
         # "wizardlm-uncensored", # 75.57s, quite bumpy translation
-        # "zephyr", # 77.35s, quite bumpy translation
+        "zephyr", # 77.35s, quite bumpy translation
         # "falcon", # 69.30s, grammatical errors
         # "wizard-vicuna", # 70.45s, quite bumpy translation
-        "open-orca-platypus2", # 69.08s, somewhat bumpy, but otherwise good translation
+        # "open-orca-platypus2", # 69.08s, somewhat bumpy, but otherwise good translation
         # "starcoder",
         # "samantha-mistral", # 70.35s, quite bumpy translation
         # "wizardlm", # 75.29s, quite bumpy translation
